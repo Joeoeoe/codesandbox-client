@@ -19,11 +19,11 @@ const DEV_URLS = {
     'https://xi5p9f7czk.execute-api.eu-west-1.amazonaws.com/dev/packages',
   bucket: 'https://dev-packager-packages.codesandbox.io',
 };
-// eslint-disable-next-line
+
+// TODO:blog 设置api服务主机地址及存储桶地址
 const PROD_URLS = {
-  packager:
-    'https://aiwi8rnkp5.execute-api.eu-west-1.amazonaws.com/prod/packages',
-  bucket: 'https://prod-packager-packages.codesandbox.io',
+  packager: 'http://xxx:3004',
+  bucket: 'https://xxxx.cloud.com',
 };
 
 const URLS = PROD_URLS;

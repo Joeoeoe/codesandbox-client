@@ -1,0 +1,24 @@
+FROM python:3.6 as build
+
+# Install Node.js 16.x
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get update && apt-get install -y nodejs
+# Install npm and Yarn
+RUN npm i -g npm && npm i -g yarn
+
+# 设置nmp和yarn的淘宝镜像源
+RUN npm config set registry https://registry.npm.taobao.org
+RUN yarn config set registry https://registry.npm.taobao.org
+
+WORKDIR /
+ADD . .
+
+RUN /bin/sh build.sh
+
+
+FROM node:lts-alpine as product
+WORKDIR /html
+RUN npm install -g serve
+COPY ./serve.json .
+COPY --from=build /packages/app/www /html
+CMD serve -l 3002
